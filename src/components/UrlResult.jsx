@@ -1,4 +1,4 @@
-import QRCode from 'qrcode.react';
+import { QRCode } from 'qrcode.react';
 
 const UrlResult = ({ shortUrl }) => {
   return (
