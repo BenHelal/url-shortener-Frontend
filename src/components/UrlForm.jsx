@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const UrlForm = () => {
+const UrlForm = ({ onSuccess }) => {
   const [longUrl, setLongUrl] = useState('');
-  const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!longUrl.trim()) {
+      setError('Please enter a valid URL');
+      return;
+    }
+
     try {
-      const response = await axios.post(import.meta.env.VITE_API_URL + '/shorten', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/shorten`, {
         longUrl
       });
-      setShortUrl(response.data.shortUrl);
+      onSuccess(response.data.shortUrl);
       setError('');
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to shorten URL');
@@ -36,24 +41,10 @@ const UrlForm = () => {
           Shorten
         </button>
       </form>
-      
+
       {error && <p className="mt-4 text-red-500">{error}</p>}
-      
-      {shortUrl && (
-        <div className="mt-4 p-4 bg-gray-100 rounded">
-          <p className="text-green-600">Short URL: 
-            <a href={shortUrl} target="_blank" className="ml-2 underline">
-              {shortUrl}
-            </a>
-          </p>
-          <button
-            onClick={() => navigator.clipboard.writeText(shortUrl)}
-            className="mt-2 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-          >
-            Copy
-          </button>
-        </div>
-      )}
     </div>
   );
 };
+
+export default UrlForm;
