@@ -7,9 +7,8 @@ const UrlForm = ({ onSuccess }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [shortUrl, setShortUrl] = useState("");
-  const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL ||
-    "https://url-shortener-backend-6hyq.onrender.com";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://url-shortener-backend-6hyq.onrender.com";
+
 
   const isValidUrl = (url) => {
     try {
