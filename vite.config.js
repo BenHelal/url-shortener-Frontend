@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['axios'], // Add 'axios' here
+      // Ne pas inclure axios ici si vous voulez qu'il soit bundlé
     },
   },
 });
