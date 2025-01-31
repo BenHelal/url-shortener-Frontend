@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import React from 'react';
 import UrlForm from './components/UrlForm';
 import UrlResult from './components/UrlResult';
-
+import logo from './logo.svg'; // Ensure the path is correct
 function App() {
-  const [shortUrl, setShortUrl] = useState('');
+  const [shortUrl, setShortUrl] = React.useState('');
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

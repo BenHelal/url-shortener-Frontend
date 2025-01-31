@@ -4,6 +4,16 @@ import axios from 'axios';
 const UrlForm = ({ onSuccess }) => {
   const [longUrl, setLongUrl] = useState('');
   const [error, setError] = useState('');
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://url-shortener-backend-6hyq.onrender.com";
+
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,10 +23,16 @@ const UrlForm = ({ onSuccess }) => {
       return;
     }
 
+    if (!isValidUrl(longUrl)) {
+      setError('Please enter a valid URL (e.g., https://example.com)');
+      return;
+    }
+
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/shorten`, {
-        longUrl
+      const response = await axios.post(`${API_BASE_URL}/api/shorten`, {
+        longUrl,
       });
+
       onSuccess(response.data.shortUrl);
       setError('');
     } catch (err) {
