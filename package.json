@@ -1,7 +1,4 @@
 {
-  "name": "url-shortener",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -9,11 +6,15 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
     "qrcode.react": "^4.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "^3.0.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "browserslist": {
     "production": [
@@ -26,5 +27,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "extends": [
+    "react-app",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
   }
 }
